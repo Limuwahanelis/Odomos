@@ -1,0 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ScriptPaths
+{
+    public static readonly string ResourcesChannelsPath = "AudioChannels";
+}
