@@ -16,9 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AnimationManager _playerAnimationManager;
     [SerializeField] PlayerMovement _playerMovement;
     [SerializeField] PlayerChecks _playerChecks;
-    [SerializeField] PlayerCombat _playerCombat;
     //[SerializeField] PlayerCollisions _playerCollisions;
-    [SerializeField] PlayerHealthSystem _playerHealthSystem;
     [SerializeField] GameObject _gameOverPanel;
     [SerializeField] AudioEvent _event;
     [SerializeField] AudioEventPlayer _player;
@@ -47,7 +45,6 @@ public class PlayerController : MonoBehaviour
             WaitFrameAndPerformFunction = WaitFrameAndExecuteFunction,
             coroutineHolder = this,
             checks = _playerChecks,
-            combat = _playerCombat,
             //collisions = _playerCollisions,
         };
 

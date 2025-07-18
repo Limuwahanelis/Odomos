@@ -25,11 +25,11 @@ public class PlayerInputHandler : MonoBehaviour
         //if (_player.IsAlive)
         //{
 
-        //    if (!PauseSettings.IsGamePaused)
-        //    {
-        //         _player.CurrentPlayerState.Move(_direction);
+        if (!PauseSettings.IsGamePaused)
+        {
+            _player.CurrentPlayerState.Move(_direction);
 
-        //    }
+        }
         //}
     }
     private void OnMove(InputValue value)

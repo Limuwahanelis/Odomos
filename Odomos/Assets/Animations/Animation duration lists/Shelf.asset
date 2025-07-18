@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4d54c32212e7240ab84aaff9841a04, type: 3}
+  m_Name: Shelf
+  m_EditorClassIdentifier: 
+  animations:
+  - name: open
+    duration: 0.3
+    speed: 1
+    layer: 0
+  - name: close
+    duration: 0.25
+    speed: 1
+    layer: 0
+  - name: New State
+    duration: 0
+    speed: 0
+    layer: 0
+  animatorController: {fileID: 9100000, guid: 001678b8b2a88b34fb631eb51289086e, type: 2}
