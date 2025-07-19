@@ -72,7 +72,7 @@ public class Shelf : MonoBehaviour,IInteractable,IReturnable,IBuyAmountChangable
     public void ChangeBuyAmount(int value)
     {
         _itemInfo.toTake += value;
-        _itemInfo.toTake = math.clamp(_itemInfo.toTake, 0, 99);
+        _itemInfo.toTake = math.clamp(_itemInfo.toTake, 1, 99);
         _description.Refresh(_itemInfo);
     }
     public void ChangeAmountToreturn(int amount)

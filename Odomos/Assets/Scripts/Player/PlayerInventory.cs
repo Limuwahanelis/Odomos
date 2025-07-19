@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+using static PlayerInventory;
 
 public class PlayerInventory : MonoBehaviour
 {
+
     [Serializable]
     public class ItemInInventory
     {
@@ -14,6 +17,7 @@ public class PlayerInventory : MonoBehaviour
 
     private float money = 1.00f;
     private float toPay=0f;
+    [SerializeField] ShoppingList _shoppingList;
     [SerializeField]private List<ItemInInventory> _itemsInInventory;
     [SerializeField] private List<ItemInInventory> _itemsBought;
     public void Additem(Item item,int amount)
@@ -28,6 +32,8 @@ public class PlayerInventory : MonoBehaviour
         {
             itemInInventory.amount+= amount;
         }
+        _shoppingList.UpdateItem(itemInInventory.item, itemInInventory.amount);
+        _shoppingList.UpdateItemCategory(itemInInventory.item.ItemCategory,GetAmountOfItemsInCategory(itemInInventory.item.ItemCategory));
         toPay = _itemsInInventory.Sum(x => x.amount*x.item.Price);
     }
     public void TakeItem(Item item)
@@ -42,18 +48,24 @@ public class PlayerInventory : MonoBehaviour
             itemInInventory.amount -= itemInInventory.amount;
             _itemsInInventory.Remove(itemInInventory);
         }
+        _shoppingList.UpdateItem(itemInInventory.item, itemInInventory.amount);
+        _shoppingList.UpdateItemCategory(itemInInventory.item.ItemCategory, GetAmountOfItemsInCategory(itemInInventory.item.ItemCategory));
         toPay = _itemsInInventory.Sum(x => x.amount * x.item.Price);
     }
     public void BuyItems()
     {
         if(money>=toPay)
         {
-            foreach(ItemInInventory item in _itemsInInventory)
+            foreach (ItemInInventory item in _itemsInInventory)
             {
                 ItemInInventory tmp = _itemsBought.Find(x => x.item == item.item);
                 if (tmp == null) _itemsBought.Add(item);
-                else tmp.amount += item.amount;                
+                else tmp.amount += item.amount;
+                _shoppingList.UpdateItem(item.item, 0);
+                _shoppingList.UpdateItemCategory(item.item.ItemCategory, 0);
             }
+            
+            _shoppingList.UpdateBoughtItems(_itemsBought);
             _itemsInInventory.Clear();
         }
     }
@@ -65,5 +77,8 @@ public class PlayerInventory : MonoBehaviour
     {
         return _itemsInInventory.Find(x => x.item == item).amount;
     }
-
+    public int GetAmountOfItemsInCategory(ItemCategory category)
+    {
+        return _itemsInInventory.FindAll(x => x.item.ItemCategory == category).Sum(x => x.amount);
+    }
 }
