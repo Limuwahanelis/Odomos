@@ -52,6 +52,20 @@ public class PlayerInputHandler : MonoBehaviour
     {
         _pauseEvent.Raise();
     }
+    private void OnInteract(InputValue value)
+    {
+        _player.Interact();
+    }
+    private void OnReturn(InputValue value)
+    {
+        _player.ReturnItem();
+    }
+    private void OnChangeBuyAmount(InputValue value)
+    {
+        int amount = (int)value.Get<float>();
+        Logger.Log(amount);
+        _player.ChangeBuyAmount(amount);
+    }
     private void OnAttack(InputValue value)
     {
         if (PauseSettings.IsGamePaused) return;

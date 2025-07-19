@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AnimationManager _playerAnimationManager;
     [SerializeField] PlayerMovement _playerMovement;
     [SerializeField] PlayerChecks _playerChecks;
+    [SerializeField] PlayerInteractions _playerInteractions;
     //[SerializeField] PlayerCollisions _playerCollisions;
     [SerializeField] GameObject _gameOverPanel;
     [SerializeField] AudioEvent _event;
@@ -84,6 +85,18 @@ public class PlayerController : MonoBehaviour
     {
        // _playerMovement.PushPlayer(psuhInfo);
         _currentPlayerState.Push();
+    }
+    public void Interact()
+    {
+        _playerInteractions.Interact();
+    }
+    public void ReturnItem()
+    {
+        _playerInteractions.ReturnItem();
+    }
+    public void ChangeBuyAmount(int value)
+    {
+        _playerInteractions.ChangeBuyAmount(value);
     }
     public Coroutine WaitAndExecuteFunction(float timeToWait, Action function)
     {
