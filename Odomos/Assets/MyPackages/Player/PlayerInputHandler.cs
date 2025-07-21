@@ -63,7 +63,6 @@ public class PlayerInputHandler : MonoBehaviour
     private void OnChangeBuyAmount(InputValue value)
     {
         int amount = (int)value.Get<float>();
-        Logger.Log(amount);
         _player.ChangeBuyAmount(amount);
     }
     private void OnAttack(InputValue value)

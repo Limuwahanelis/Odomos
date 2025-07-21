@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public bool IsAlive => _isAlive;
     public PlayerState CurrentPlayerState => _currentPlayerState;
     public GameObject MainBody => _mainBody;
+    [Header("Upgrades")]
+    [SerializeField] LevelableUpgradeFloatSO _speedUpgrade;
     [Header("Player"), SerializeField] Animator _anim;
     [SerializeField] GameObject _mainBody;
     [SerializeField] AnimationManager _playerAnimationManager;
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
     protected void Initalize()
     {
         //_playerHealthSystem.OnPushed += PushPlayer;
+        SetUpgrades();
         List<Type> states = AppDomain.CurrentDomain.GetAssemblies().SelectMany(domainAssembly => domainAssembly.GetTypes())
             .Where(type => typeof(PlayerState).IsAssignableFrom(type) && !type.IsAbstract).ToArray().ToList();
 
@@ -60,6 +63,10 @@ public class PlayerController : MonoBehaviour
          newState.SetUpState(_context);
          _currentPlayerState = newState;
         Logger.Log(newState.GetType());
+    }
+    private void SetUpgrades()
+    {
+        _playerMovement.IncreaseSpeed(_speedUpgrade.PerLevelIncrease* UpgradesManager.GetUpgradeLevel(_speedUpgrade.Id));
     }
     public PlayerState GetState(Type state)
     {

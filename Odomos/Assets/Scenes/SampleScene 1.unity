@@ -1433,9 +1433,9 @@ RectTransform:
   - {fileID: 1736706125}
   m_Father: {fileID: 1373897294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 52.030426, y: -16.126152}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 11.7003, y: 11.7003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &316808332
@@ -1781,7 +1781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &341610889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2818,34 +2818,6 @@ PrefabInstance:
     - target: {fileID: 940736413600378828, guid: 95089bd736760a24bad6f712b2c64deb, type: 3}
       propertyPath: m_Layer
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3340522912162640426, guid: 95089bd736760a24bad6f712b2c64deb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3340522912162640426, guid: 95089bd736760a24bad6f712b2c64deb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3340522912162640426, guid: 95089bd736760a24bad6f712b2c64deb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1599312854}
-    - target: {fileID: 3340522912162640426, guid: 95089bd736760a24bad6f712b2c64deb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3340522912162640426, guid: 95089bd736760a24bad6f712b2c64deb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 3340522912162640426, guid: 95089bd736760a24bad6f712b2c64deb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneLoader, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3340522912162640426, guid: 95089bd736760a24bad6f712b2c64deb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6697575048929376088, guid: 95089bd736760a24bad6f712b2c64deb, type: 3}
       propertyPath: m_Pivot.x
@@ -5123,9 +5095,9 @@ RectTransform:
   - {fileID: 1033480442}
   m_Father: {fileID: 1373897294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 37.900127, y: -16.126152}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 11.7003, y: 11.7003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &918875445
@@ -5656,9 +5628,9 @@ RectTransform:
   - {fileID: 1661375315}
   m_Father: {fileID: 1373897294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 66.16072, y: -16.126152}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 11.7003, y: 11.7003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &990022351
@@ -5757,7 +5729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e2e0a7ba82bdd4db7188d77d6220bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shoppingList: {fileID: 11400000, guid: 21c6e8b01496da94eac65443969091cd, type: 2}
+  _shoppingList: {fileID: 11400000, guid: 5c74cdc7ebb8c0f428056700d612e5d9, type: 2}
   _shoppingListUI: {fileID: 581881307}
   OnItemAmountChanged:
     m_PersistentCalls:
@@ -5836,19 +5808,7 @@ MonoBehaviour:
         m_CallState: 2
   OnShoppingListCompleted:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1599312853}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: CompleteLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1028456629
 GameObject:
   m_ObjectHideFlags: 0
@@ -8712,7 +8672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73fe319f4c1cf94428d05e4789bf9ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneToLoad: SampleScene 1
+  _sceneToLoad: SampleScene
   _loadNextScene: 0
   _loadOnStart: 0
 --- !u!1 &1620487992
@@ -9410,9 +9370,9 @@ RectTransform:
   - {fileID: 1870378017}
   m_Father: {fileID: 1373897294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 9.639525, y: -16.126152}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 11.7003, y: 11.7003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1787849920
@@ -11481,9 +11441,9 @@ RectTransform:
   - {fileID: 885043502}
   m_Father: {fileID: 1373897294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 23.769825, y: -16.126152}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 11.7003, y: 11.7003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2118611888

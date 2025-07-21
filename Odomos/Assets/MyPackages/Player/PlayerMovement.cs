@@ -12,6 +12,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] PlayerController _player;
     [SerializeField] float _normalGravityForce;
     [SerializeField] float _speed;
+    public void IncreaseSpeed(float pct)
+    {
+        _speed *= (1 + pct);
+    }
     public void Move(Vector2 direction)
     {
 

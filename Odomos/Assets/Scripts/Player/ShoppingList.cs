@@ -11,14 +11,18 @@ public class ShoppingList : MonoBehaviour
 {
     [SerializeField] ShoppingListSO _shoppingList;
     [SerializeField] ShoppingListUI _shoppingListUI;
+    int _numberOfItemsOnTheList;
+    int _numberOfCompletedItems=0;
     public UnityEvent<Item, int> OnItemAmountChanged;
     public UnityEvent<ItemCategory, int> OnItemCategoryAmountChanged;
     public UnityEvent<List<ItemInInventory>> OnitemsBought;
     public UnityEvent<Item> OnEnoughItemsBought;
     public UnityEvent<ItemCategory> OnEnoughItemsOfCategoryBought;
+    public UnityEvent OnShoppingListCompleted;
     private void Awake()
     {
         _shoppingListUI.SetUp(_shoppingList);
+        _numberOfItemsOnTheList = _shoppingList.ToBuy.Count();
     }
     public void UpdateItem(Item item,int amount)
     {
@@ -53,8 +57,16 @@ public class ShoppingList : MonoBehaviour
             ShoppingListSO.ShoppingListEntry entry = _shoppingList.ToBuy.Find(x => x.toBuy == categories[i]);
             if (entry!=null)
             {
-                if (amounts[i] >= entry.amount) OnEnoughItemsOfCategoryBought?.Invoke(categories[i]);
+                if (amounts[i] >= entry.amount)
+                {
+                    OnEnoughItemsOfCategoryBought?.Invoke(categories[i]);
+                    _numberOfCompletedItems++;
+                }
             }
+        }
+        if(_numberOfCompletedItems== _numberOfItemsOnTheList)
+        {
+            OnShoppingListCompleted?.Invoke();
         }
     }
 }

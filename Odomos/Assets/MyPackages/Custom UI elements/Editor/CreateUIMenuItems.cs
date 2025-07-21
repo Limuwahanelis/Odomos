@@ -27,6 +27,11 @@ public class CreateUIMenuItems : MonoBehaviour
     {
         CreateObject("Assets/MyPackages/Custom UI elements/Prefabs/Tab.prefab", "Tab", menuCommand);
     }
+    [MenuItem("GameObject/UI/Button with image", false, 10)]
+    static void CreateImgButtonFromPreab(UnityEditor.MenuCommand menuCommand)
+    {
+        CreateObject("Assets/MyPackages/Custom UI elements/Prefabs/Button with Image.prefab", "Button", menuCommand);
+    }
 
     private static void CreateObject(string prefabPath,string name, UnityEditor.MenuCommand menuCommand)
     {
