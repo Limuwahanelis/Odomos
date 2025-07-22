@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4d54c32212e7240ab84aaff9841a04, type: 3}
+  m_Name: Character
+  m_EditorClassIdentifier: 
+  animations:
+  - name: Character
+    duration: 1
+    speed: 1
+    layer: 0
+  - name: attack-kick-left
+    duration: 0.5833334
+    speed: 1
+    layer: 0
+  - name: attack-kick-right
+    duration: 0.5833334
+    speed: 1
+    layer: 0
+  - name: attack-melee-left
+    duration: 0.4166667
+    speed: 1
+    layer: 0
+  - name: attack-melee-right
+    duration: 0.4166667
+    speed: 1
+    layer: 0
+  - name: Character 0
+    duration: 1
+    speed: 1
+    layer: 0
+  - name: die
+    duration: 0.33333334
+    speed: 0.6
+    layer: 0
+  - name: drive
+    duration: 0.16666667
+    speed: 1
+    layer: 0
+  - name: emote-no
+    duration: 0.6666667
+    speed: 1
+    layer: 0
+  - name: emote-yes
+    duration: 0.6666667
+    speed: 1
+    layer: 0
+  - name: holding-both
+    duration: 0.16666667
+    speed: 1
+    layer: 0
+  - name: holding-both-shoot
+    duration: 0.20000002
+    speed: 1
+    layer: 0
+  - name: holding-left
+    duration: 0.16666667
+    speed: 1
+    layer: 0
+  - name: holding-left-shoot
+    duration: 0.20000002
+    speed: 1
+    layer: 0
+  - name: holding-right
+    duration: 0.16666667
+    speed: 1
+    layer: 0
+  - name: holding-right-shoot
+    duration: 0.20000002
+    speed: 1
+    layer: 0
+  - name: idle
+    duration: 1.3333334
+    speed: 1
+    layer: 0
+  - name: interact-left
+    duration: 0.6666667
+    speed: 1
+    layer: 0
+  - name: interact-right
+    duration: 0.6666667
+    speed: 1
+    layer: 0
+  - name: pick-up
+    duration: 0.33333334
+    speed: 1
+    layer: 0
+  - name: sit
+    duration: 0.16666667
+    speed: 1
+    layer: 0
+  - name: sprint
+    duration: 0.5
+    speed: 1
+    layer: 0
+  - name: static
+    duration: 0.10000001
+    speed: 1
+    layer: 0
+  - name: walk
+    duration: 0.6666667
+    speed: 1
+    layer: 0
+  - name: wheelchair-move-back
+    duration: 0.5
+    speed: 1
+    layer: 0
+  - name: wheelchair-move-forward
+    duration: 0.5
+    speed: 1
+    layer: 0
+  - name: wheelchair-move-left
+    duration: 0.5
+    speed: 1
+    layer: 0
+  - name: wheelchair-move-right
+    duration: 0.5
+    speed: 1
+    layer: 0
+  - name: wheelchair-sit
+    duration: 0.16666667
+    speed: 1
+    layer: 0
+  - name: get up
+    duration: 0.5833333
+    speed: 1
+    layer: 0
+  animatorController: {fileID: 9100000, guid: 52d8ea6984b2f4d4689159724720ef57, type: 2}

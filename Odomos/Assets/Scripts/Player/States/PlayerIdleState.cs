@@ -18,6 +18,7 @@ public class PlayerIdleState : PlayerState
     public override void SetUpState(PlayerContext context)
     {
         base.SetUpState(context);
+        _context.animationManager.PlayAnimation("static");
     }
     public override void Move(Vector2 direction)
     {

@@ -13,8 +13,8 @@ TagManager:
   - UI
   - PlayerCore
   - PlayerCoreDetection
-  - 
-  - 
+  - Player
+  - PlayerCollision
   - 
   - 
   - 
