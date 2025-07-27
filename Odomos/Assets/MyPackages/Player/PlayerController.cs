@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerMovement _playerMovement;
     [SerializeField] PlayerChecks _playerChecks;
     [SerializeField] PlayerInteractions _playerInteractions;
+    [SerializeField] PlayerPushComponent _pushComponent;
     //[SerializeField] PlayerCollisions _playerCollisions;
     [SerializeField] GameObject _gameOverPanel;
     [SerializeField] AudioEvent _event;
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
             WaitFrameAndPerformFunction = WaitFrameAndExecuteFunction,
             coroutineHolder = this,
             checks = _playerChecks,
+            pushComponent =_pushComponent
             //collisions = _playerCollisions,
         };
 

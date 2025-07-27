@@ -18,10 +18,13 @@ public class PlayerIdleState : PlayerState
     public override void SetUpState(PlayerContext context)
     {
         base.SetUpState(context);
-        _context.animationManager.PlayAnimation("static");
+        _context.animationManager.PlayAnimation("idle");
+        _context.playerMovement.Stop();
+        _context.pushComponent.SetCanBePushed(true);
     }
     public override void Move(Vector2 direction)
     {
+        if (direction == Vector2.zero) return;
         ChangeState(PlayerMoveState.StateType);
     }
     public override void InterruptState()

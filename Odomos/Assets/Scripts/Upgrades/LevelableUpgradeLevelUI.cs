@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -7,13 +8,14 @@ using UnityEngine.UI;
 public class LevelableUpgradeLevelUI : MonoBehaviour
 {
     [SerializeField] RectTransform _levelImgsParent;
-    [SerializeField] TMP_Text _descriptionRextField;
+    [SerializeField] TMP_Text _descriptionTextField;
+    [SerializeField] TMP_Text _costTextField;
     [SerializeField] LevelablleUpgradeLevelIndicator _levelIndicatorPrefab;
-    [SerializeField] List<LevelablleUpgradeLevelIndicator> _levelIndicators= new List<LevelablleUpgradeLevelIndicator>();
+    [SerializeField] public List<LevelablleUpgradeLevelIndicator> _levelIndicators= new List<LevelablleUpgradeLevelIndicator>();
 
     private void Start()
     {
-        _levelIndicators.AddRange(_levelImgsParent.GetComponentsInChildren<LevelablleUpgradeLevelIndicator>());
+        //_levelIndicators.AddRange(_levelImgsParent.GetComponentsInChildren<LevelablleUpgradeLevelIndicator>());
     }
     public void SetPreviewLevel(int previewLevel)
     {
@@ -31,17 +33,27 @@ public class LevelableUpgradeLevelUI : MonoBehaviour
             _levelIndicators[i].SetFillImage(true);
         }
     }
-    public void SetUp(LevelableUpgradeSO upgradeSO,string upgradableAmount)
+    public void SetUp(LevelableUpgradeSO upgradeSO,string upgradableAmount,int currentUpgradeLevel)
     {
         
         _levelIndicators.Clear();
         int indicatorsToSpawn = upgradeSO.MaxLevel- _levelImgsParent.childCount;
         _levelIndicators.AddRange(_levelImgsParent.GetComponentsInChildren<LevelablleUpgradeLevelIndicator>());
-        _descriptionRextField.text = $"Upgrades {upgradeSO.UpgradeDescription} by {upgradableAmount} per level";
+        _descriptionTextField.text = $"Upgrades {upgradeSO.UpgradeDescription} by {upgradableAmount} per level";
+        _costTextField.text = $"{currentUpgradeLevel * upgradeSO.CostPerLevel} $";
         for(int i=0;i< indicatorsToSpawn; i ++)
         {
             LevelablleUpgradeLevelIndicator indicator= Instantiate(_levelIndicatorPrefab, _levelImgsParent);
             LayoutRebuilder.ForceRebuildLayoutImmediate(_levelImgsParent);
+            _levelIndicators.Add(indicator);
         }
+    }
+    public void SetPrice(float value)
+    {
+        _costTextField.text = value.ToString("0.00", CultureInfo.InvariantCulture);
+    }
+    private void Reset()
+    {
+        _descriptionTextField.text = $"Upgrades dfs by wwwww per level";
     }
 }

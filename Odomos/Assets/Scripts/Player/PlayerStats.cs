@@ -7,4 +7,6 @@ public class PlayerStats : MonoBehaviour
     public static bool canCompleteLevelWithOneUnfullfiled;
     public static bool canStopTime;
     public static float savedMoney;
+    public static float currentMoney;
+    public static int maxHeldItems=6;
 }

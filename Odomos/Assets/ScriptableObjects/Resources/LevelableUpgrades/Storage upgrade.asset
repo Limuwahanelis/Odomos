@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3b5f676169f584a90ffcdef3cd0596, type: 3}
+  m_Name: Storage upgrade
+  m_EditorClassIdentifier: 
+  _id: 0993fd21ffd8f0143b6838269c21ec1e
+  _isInitalised: 1
+  _maxLevel: 5
+  _costPerLevel: 0.5
+  _upgradeDescription: Storage
+  _perLevelIncrease: 4

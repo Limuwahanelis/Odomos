@@ -8,6 +8,7 @@ public class PlayerInputHandler : MonoBehaviour
 {
 
     [SerializeField] PlayerController _player;
+    [SerializeField] PlayerMovement _playerMovement;
     [SerializeField] InputActionAsset _controls;
     [SerializeField] bool _useCommands;
     [SerializeField] PlayerInputStack _inputStack;
@@ -19,23 +20,27 @@ public class PlayerInputHandler : MonoBehaviour
         _player = GetComponent<PlayerController>();
     }
 
+    private void FixedUpdate()
+    {
+        if (!PauseSettings.IsGamePaused)
+        {
+            _player.CurrentPlayerState.Move(_direction);
+
+        }
+    }
     // Update is called once per frame
     void Update()
     {
         //if (_player.IsAlive)
         //{
 
-        if (!PauseSettings.IsGamePaused)
-        {
-            _player.CurrentPlayerState.Move(_direction);
 
-        }
         //}
     }
     private void OnMove(InputValue value)
     {
         _direction = value.Get<Vector2>();
-        
+        Logger.Log(_direction);
     }
     void OnJump(InputValue value)
     {
@@ -48,7 +53,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         _direction = value.Get<Vector2>();
     }
-    private void OnPause()
+    private void OnCancel()
     {
         _pauseEvent.Raise();
     }
@@ -59,6 +64,10 @@ public class PlayerInputHandler : MonoBehaviour
     private void OnReturn(InputValue value)
     {
         _player.ReturnItem();
+    }
+    private void OnSprint(InputValue value)
+    {
+        _playerMovement.SetSprint(value.Get<float>() > 0);
     }
     private void OnChangeBuyAmount(InputValue value)
     {

@@ -19,6 +19,7 @@ public class PlayerGettingUpState : PlayerState
         if(_time>=_animDuration)
         {
             ChangeState(PlayerIdleState.StateType);
+            
         }
     }
 

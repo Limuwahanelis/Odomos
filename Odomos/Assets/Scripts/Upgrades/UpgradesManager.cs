@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class UpgradesManager : MonoBehaviour
 {
+    public class NonLevelableUpgradeData
+    {
+        public string id;
+        public bool isUnlocked;
+    }
     public class LevelableUpgradeData
     {
         public string id;
@@ -30,7 +35,24 @@ public class UpgradesManager : MonoBehaviour
             return _levelableUpgradeDatas;
         }
     }
+    public static List<NonLevelableUpgradeData> NonLevelableUpgradeDatas
+    {
+        get
+        {
+            if (_nonLevelableUpgradeDatas == null)
+            {
+                _nonLevelableUpgradeDatas = new List<NonLevelableUpgradeData>();
+                List<LevelableUpgradeSO> tmp = Resources.LoadAll<LevelableUpgradeSO>($"{ScriptPaths.ResourcesNonLevelableUpgradesPath}/").ToList();
+                foreach (LevelableUpgradeSO upgrade in tmp)
+                {
+                    _nonLevelableUpgradeDatas.Add(new NonLevelableUpgradeData() { id = upgrade.Id, isUnlocked = false });
+                }
+            }
+            return _nonLevelableUpgradeDatas;
+        }
+    }
     private static List<LevelableUpgradeData> _levelableUpgradeDatas;
+    private static List<NonLevelableUpgradeData> _nonLevelableUpgradeDatas;
     public static List<UpgradeData> UpgradeDatas;
 
     public static void IncreaseUpgradeLevel(string id,int level)
@@ -40,6 +62,10 @@ public class UpgradesManager : MonoBehaviour
     public static int GetUpgradeLevel(string id)
     {
         return LevelableUpgradeDatas.Find(x => x.id == id).level;
+    }
+    public static void UnlockUpgrade(string id)
+    {
+        NonLevelableUpgradeDatas.Find(x=>x.id == id).isUnlocked = true;
     }
 
 }

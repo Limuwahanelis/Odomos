@@ -6,25 +6,48 @@ public class LevelableUpgradeInt : LevelableUpgrade,ISerializationCallbackReceiv
     [SerializeField] LevelableUpgradeIntSO _upgrade;
     [SerializeField] LevelableUpgradeLevelUI _upgradeLevellUI;
     private LevelableUpgradeIntSO _upgradeDump;
+    float toPay = 0;
     public override void BuyUpgrade()
     {
+        if (_upgradeCurrentLevel >= _upgrade.MaxLevel) return;
+        if (toPay >= PlayerStats.savedMoney) return;
         _upgradeCurrentLevel = _upgradelevelToBuy;
         _upgradeLevellUI.SetUpgradeBuyLevel(_upgradeCurrentLevel);
         UpgradesManager.IncreaseUpgradeLevel(_upgrade.Id, _upgradeCurrentLevel);
+        OnUpgradeBought?.Invoke(_upgrade, _upgradeCurrentLevel);
+        IncreaseLevelToBuy();
     }
 
     public override void DecreaseLevelToBuy()
     {
+        if (_upgradeCurrentLevel >= _upgrade.MaxLevel) return;
         _upgradelevelToBuy--;
-        _upgradelevelToBuy = math.clamp(_upgradelevelToBuy, _upgradeCurrentLevel, _upgrade.MaxLevel);
+        _upgradelevelToBuy = math.clamp(_upgradelevelToBuy, _upgradeCurrentLevel+1, _upgrade.MaxLevel);
+
+        float pay = 0;
+        for (int i = _upgradeCurrentLevel + 1; i <= _upgradelevelToBuy; i++)
+        {
+            pay += i * _upgrade.CostPerLevel;
+        }
+        toPay = pay;
         _upgradeLevellUI.SetPreviewLevel(_upgradelevelToBuy);
+        _upgradeLevellUI.SetPrice(toPay);
     }
 
     public override void IncreaseLevelToBuy()
     {
+        if (_upgradeCurrentLevel >= _upgrade.MaxLevel) return;
         _upgradelevelToBuy++;
-        _upgradelevelToBuy = math.clamp(_upgradelevelToBuy, _upgradeCurrentLevel, _upgrade.MaxLevel);
+        _upgradelevelToBuy = math.clamp(_upgradelevelToBuy, _upgradeCurrentLevel+1, _upgrade.MaxLevel);
+
+        float pay = 0;
+        for (int i = _upgradeCurrentLevel + 1; i <= _upgradelevelToBuy; i++)
+        {
+            pay += i * _upgrade.CostPerLevel;
+        }
+        toPay = pay;
         _upgradeLevellUI.SetPreviewLevel(_upgradelevelToBuy);
+        _upgradeLevellUI.SetPrice(toPay);
     }
     private void Reset()
     {
@@ -32,19 +55,29 @@ public class LevelableUpgradeInt : LevelableUpgrade,ISerializationCallbackReceiv
         {
             _upgradeLevellUI = GetComponent<LevelableUpgradeLevelUI>();
         }
-        if(_upgrade!=null) _upgradeLevellUI.SetUp(_upgrade,$"{_upgrade.PerLevelIncrease}");
+        if(_upgrade!=null) _upgradeLevellUI.SetUp(_upgrade,$"{_upgrade.PerLevelIncrease}",_upgradeCurrentLevel);
     }
 
     public void OnAfterDeserialize()
-    {
-        _upgradeDump = _upgrade;
-    }
-
-    public void OnBeforeSerialize()
     {
         if (_upgradeDump != default)
         {
             _upgrade = _upgradeDump;
         }
+        
+    }
+
+    public void OnBeforeSerialize()
+    {
+        _upgradeDump = _upgrade;
+    }
+    public override void GetCurrentUpgradeLevel()
+    {
+        _upgradeCurrentLevel = UpgradesManager.GetUpgradeLevel(_upgrade.Id);
+        _upgradelevelToBuy = _upgradeCurrentLevel + 1;
+        if (_upgradeCurrentLevel == _upgrade.MaxLevel) _upgradelevelToBuy = _upgradeCurrentLevel;
+        toPay += _upgrade.CostPerLevel * _upgradelevelToBuy;
+        _upgradeLevellUI.SetPreviewLevel(_upgradelevelToBuy);
+        _upgradeLevellUI.SetPrice(toPay);
     }
 }

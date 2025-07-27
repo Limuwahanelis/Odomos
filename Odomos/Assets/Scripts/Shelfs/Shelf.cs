@@ -6,6 +6,7 @@ using static UnityEditor.Progress;
 
 public class Shelf : MonoBehaviour,IInteractable,IReturnable,IBuyAmountChangable
 {
+    public Transform NpcPos => _npcPos;
     public class ItemInfo
     {
         public int inStock;
@@ -17,6 +18,7 @@ public class Shelf : MonoBehaviour,IInteractable,IReturnable,IBuyAmountChangable
     [SerializeField] Item _item;
     [SerializeField] ItemDescription _description;
     [SerializeField] PlayerInventory _playerInventory;
+    [SerializeField] Transform _npcPos;
     private ItemInfo _itemInfo;
     private Coroutine _timerCor = null;
     private void Awake()
@@ -85,7 +87,7 @@ public class Shelf : MonoBehaviour,IInteractable,IReturnable,IBuyAmountChangable
     {
         if (_itemInfo.inStock == 0) return;
         int toTakeAmount = math.clamp(_itemInfo.toTake, 1, _itemInfo.inStock);
-        _playerInventory.Additem(_item, toTakeAmount);
+        if (!_playerInventory.Additem(_item, toTakeAmount)) return;
 
         _itemInfo.inStock-= toTakeAmount;
         _description.Refresh(_itemInfo);

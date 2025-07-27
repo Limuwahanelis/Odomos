@@ -9,7 +9,7 @@
                     "name": "Pause",
                     "type": "Button",
                     "id": "ede97d63-bc6e-4185-b6f2-ac5b2f4932a9",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

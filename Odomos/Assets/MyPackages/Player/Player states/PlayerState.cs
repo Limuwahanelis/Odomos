@@ -23,7 +23,7 @@ public abstract class PlayerState
     public virtual void Move(Vector2 direction) { }
     public virtual void Jump() { }
     public virtual void Attack(PlayerCombat.AttackModifiers attackModifier=PlayerCombat.AttackModifiers.NONE) { }
-    public virtual void Push() { ChangeState(PlayerPushedState.StateType); }
+    public virtual void Push() {  }
     public abstract void InterruptState();
     public void ChangeState(Type newStateType)
     {

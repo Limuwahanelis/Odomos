@@ -11,4 +11,8 @@ public class PlayerPushComponent : MonoBehaviour, IPushable
         if(_canBePushed) _playerController.CurrentPlayerState.Push();
         _canBePushed = false;
     }
+    public void SetCanBePushed(bool value)
+    {
+        _canBePushed = value;
+    }
 }

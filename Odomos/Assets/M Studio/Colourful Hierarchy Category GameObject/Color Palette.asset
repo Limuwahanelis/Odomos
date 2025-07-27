@@ -20,14 +20,14 @@ MonoBehaviour:
     fontStyle: 3
   - keyChar: ///
     textColor: {r: 1, g: 1, b: 1, a: 1}
-    backgroundColor: {r: 0, g: 0.6152477, b: 1, a: 1}
+    backgroundColor: {r: 0.007787468, g: 0.20628552, b: 0.3301887, a: 1}
     textAlignment: 3
-    fontStyle: 1
+    fontStyle: 0
   - keyChar: '#'
     textColor: {r: 1, g: 1, b: 1, a: 1}
-    backgroundColor: {r: 0.5058824, g: 0.84705883, b: 0.81960785, a: 1}
+    backgroundColor: {r: 0.33842117, g: 0.6132076, b: 0.5910983, a: 1}
     textAlignment: 3
-    fontStyle: 1
+    fontStyle: 0
   - keyChar: '@'
     textColor: {r: 1, g: 1, b: 1, a: 1}
     backgroundColor: {r: 0.6132076, g: 0.07147287, b: 0.026032386, a: 1}
