@@ -19,15 +19,20 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] ShoppingList _shoppingList;
     [SerializeField]private List<ItemInInventory> _itemsInInventory;
     [SerializeField] private List<ItemInInventory> _itemsBought;
+    [SerializeField] LevelableUpgradeIntSO _inventoryUpgrade;
     public UnityEvent<float> OnHeldMoneyChanged;
     public UnityEvent<int> OnHeldItemsChanged;
+    public UnityEvent<float> OnToPayAmountChanged;
+    public UnityEvent<int> OnSetPlayerMaxHedItemsUI;
     private void Start()
     {
         OnHeldMoneyChanged?.Invoke(1f);
         OnHeldItemsChanged?.Invoke(0);
+        OnToPayAmountChanged?.Invoke(0);
     }
     public bool Additem(Item item,int amount)
     {
+        if (_itemsInInventory.Sum(x => x.amount)+amount> PlayerStats.maxHeldItems) return false;
         ItemInInventory itemInInventory = _itemsInInventory.Find(x => x.item == item);
         if (itemInInventory == null)
         {
@@ -44,7 +49,15 @@ public class PlayerInventory : MonoBehaviour
         toPay = _itemsInInventory.Sum(x => x.amount*x.item.Price);
         OnHeldItemsChanged?.Invoke(_itemsInInventory.Count());
         OnHeldItemsChanged?.Invoke(_itemsInInventory.Sum(x => x.amount));
+        OnToPayAmountChanged?.Invoke(toPay);
         return true;
+    }
+    public void UpdateUI()
+    {
+        PlayerStats.maxHeldItems = 6+ UpgradesManager.GetUpgradeLevel(_inventoryUpgrade.Id) * _inventoryUpgrade.PerLevelIncrease;
+        OnHeldItemsChanged?.Invoke(0);
+        OnToPayAmountChanged?.Invoke(0);
+        //OnSetPlayerMaxHedItemsUI?.Invoke(PlayerStats.maxHeldItems);
     }
     public void TakeItem(Item item)
     {
@@ -62,6 +75,7 @@ public class PlayerInventory : MonoBehaviour
         _shoppingList.UpdateItem(itemInInventory.item, itemInInventory.amount);
         _shoppingList.UpdateItemCategory(itemInInventory.item.ItemCategory, GetAmountOfItemsInCategory(itemInInventory.item.ItemCategory));
         toPay = _itemsInInventory.Sum(x => x.amount * x.item.Price);
+        OnToPayAmountChanged?.Invoke(toPay);
         OnHeldItemsChanged?.Invoke(_itemsInInventory.Sum(x=>x.amount));
     }
     public void BuyItems()
@@ -77,13 +91,17 @@ public class PlayerInventory : MonoBehaviour
                 _shoppingList.UpdateItemCategory(item.item.ItemCategory, 0);
             }
             
+        
+
+            PlayerStats.currentMoney -= toPay;
+            toPay = 0;
+            OnHeldMoneyChanged?.Invoke(PlayerStats.currentMoney);
             _shoppingList.UpdateBoughtItems(_itemsBought);
             _itemsInInventory.Clear();
+            OnHeldItemsChanged?.Invoke(0);
+            OnToPayAmountChanged?.Invoke(0);
         }
-        PlayerStats.currentMoney -= toPay;
-        toPay = 0;
-        OnHeldMoneyChanged?.Invoke(PlayerStats.currentMoney);
-        OnHeldItemsChanged?.Invoke(_itemsInInventory.Count());
+
     }
     public bool ChekItem(Item item)
     {

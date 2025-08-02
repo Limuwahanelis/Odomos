@@ -17,4 +17,4 @@ MonoBehaviour:
   _maxLevel: 5
   _costPerLevel: 0.5
   _upgradeDescription: Storage
-  _perLevelIncrease: 4
+  _perLevelIncrease: 2

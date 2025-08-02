@@ -9,12 +9,12 @@ public class ItemDescription : MonoBehaviour
     [SerializeField] TMP_Text _itemInStockTextField;
     [SerializeField] TMP_Text _itemToTakeTextField;
 
-    public void SetUp(Item _item)
+    public void SetUp(Item _item,int amount)
     {
         _itemNameTextField.text = _item.Name;
         _itemCategoryNameTextField.text = _item.ItemCategory.name;
         _itemPriceTextField.text = _item.Price.ToString(System.Globalization.CultureInfo.InvariantCulture);
-        _itemInStockTextField.text = _item.InStock.ToString();
+        _itemInStockTextField.text = amount.ToString();
         _itemToTakeTextField.text = 1.ToString();
     }
 

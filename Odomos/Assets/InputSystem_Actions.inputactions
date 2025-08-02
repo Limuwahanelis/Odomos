@@ -103,6 +103,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "StopTime",
+                    "type": "Button",
+                    "id": "07f62b2c-cbc6-446a-b90e-339165756be0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -512,6 +521,17 @@
                     "action": "ChangeBuyAmount",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "7a48e814-b8fb-4c2d-b830-ee7ddebb17cc",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "StopTime",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

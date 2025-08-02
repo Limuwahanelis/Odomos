@@ -9,12 +9,11 @@ public class LevelableUpgradeFloat : LevelableUpgrade,ISerializationCallbackRece
     float toPay = 0;
     public override void BuyUpgrade()
     {
-        PlayerStats.savedMoney = 20f;
         if (_upgradeCurrentLevel >= _upgrade.MaxLevel) return;
         if (toPay >= PlayerStats.savedMoney) return;
         _upgradeCurrentLevel = _upgradelevelToBuy;
+        PlayerStats.savedMoney -= toPay;
         _upgradeLevellUI.SetUpgradeBuyLevel(_upgradeCurrentLevel);
-        UpgradesManager.IncreaseUpgradeLevel(_upgrade.Id, _upgradeCurrentLevel);
         OnUpgradeBought?.Invoke(_upgrade,_upgradeCurrentLevel);
         IncreaseLevelToBuy();
     }
@@ -77,6 +76,7 @@ public class LevelableUpgradeFloat : LevelableUpgrade,ISerializationCallbackRece
         if (_upgradeCurrentLevel == _upgrade.MaxLevel) _upgradelevelToBuy = _upgradeCurrentLevel;
         toPay += _upgrade.CostPerLevel * _upgradelevelToBuy;
         _upgradeLevellUI.SetPreviewLevel(_upgradelevelToBuy);
+        _upgradeLevellUI.SetUpgradeBuyLevel(_upgradelevelToBuy-1);
         _upgradeLevellUI.SetPrice(toPay);
     }
 }

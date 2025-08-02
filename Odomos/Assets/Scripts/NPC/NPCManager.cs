@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class NPCManager : MonoBehaviour
 {
@@ -9,10 +10,11 @@ public class NPCManager : MonoBehaviour
     [SerializeField] List<ShopNPCController> _npcs= new List<ShopNPCController>();
     private void Awake()
     {
-        List<Vector3> posList = _shelfs.Select(x=>x.NpcPos.position).ToList();
+        if (_npcs == null || _npcs.Count ==0) return;
+        
         foreach(ShopNPCController controller in _npcs)
         {
-            controller.SetMoveList(posList);
+            controller.SetMoveList(_shelfs);
         }
     }
 }

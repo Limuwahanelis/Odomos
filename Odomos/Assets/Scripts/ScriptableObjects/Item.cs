@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="Item")]
@@ -20,9 +22,11 @@ public class Item : Buyable
     {
         _name = name;
     }
+#if UNITY_EDITOR
     private void Reset()
     {
         
        _name= Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(this));
     }
+#endif
 }

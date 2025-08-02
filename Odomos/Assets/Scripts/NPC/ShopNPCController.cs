@@ -8,9 +8,9 @@ public class ShopNPCController : EnemyController
 {
 
     protected ShopNPCContext _context;
-    protected List<Vector3> _positions;
-    public void SetMoveList(List<Vector3> positions)
+    protected List<Shelf> _shelfs;
+    public void SetMoveList(List<Shelf> shelfs)
     {
-        _positions = positions;
+        _shelfs = shelfs;
     }
 }

@@ -11,6 +11,7 @@ public class ShoppingList : MonoBehaviour
 {
     [SerializeField] ShoppingListSO _shoppingList;
     [SerializeField] ShoppingListUI _shoppingListUI;
+    [SerializeField] NonLevelableUpgradeSO _OneLessItemShoppingList;
     int _numberOfItemsOnTheList;
     int _numberOfCompletedItems=0;
     public UnityEvent<Item, int> OnItemAmountChanged;
@@ -42,7 +43,11 @@ public class ShoppingList : MonoBehaviour
             ShoppingListSO.ShoppingListEntry entry = _shoppingList.ToBuy.Find(x => x.toBuy == itemInInventory.item);
             if (entry != null)
             {
-                if(itemInInventory.amount>=entry.amount) OnEnoughItemsBought?.Invoke(itemInInventory.item);
+                if (itemInInventory.amount >= entry.amount)
+                {
+                    OnEnoughItemsBought?.Invoke(itemInInventory.item);
+                    _numberOfCompletedItems++;
+                }
             }
         }
 
@@ -64,9 +69,10 @@ public class ShoppingList : MonoBehaviour
                 }
             }
         }
-        if(_numberOfCompletedItems== _numberOfItemsOnTheList)
+        if(_numberOfCompletedItems== (UpgradesManager.GetUpgradeStatus(_OneLessItemShoppingList.Id)?_numberOfItemsOnTheList-1: _numberOfItemsOnTheList))
         {
             OnShoppingListCompleted?.Invoke();
         }
+        _numberOfCompletedItems = 0;
     }
 }

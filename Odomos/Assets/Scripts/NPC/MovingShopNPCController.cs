@@ -2,13 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class MovingShopNPCController : ShopNPCController
 {
-
+    [SerializeField] GameEventSO _timeResumed;
+    [SerializeField] GameEventSO _timePaused;
     [SerializeField] NavMeshAgent _agent;
     public override void Awake()
     {
@@ -25,8 +27,9 @@ public class MovingShopNPCController : ShopNPCController
         {
             ChangeEnemyState = ChangeState,
             animMan = _enemyAnimationManager,
-            positions = _positions,
+            shelfs = _shelfs,
             navMeshAgent = _agent,
+            npc = transform,
         };
         EnemyState.GetState getState = GetState;
         foreach (Type state in states)
@@ -45,7 +48,16 @@ public class MovingShopNPCController : ShopNPCController
     {
         _agent.isStopped = !_agent.isStopped;
     }
-
+    public void OnTimeStopped()
+    {
+        _enemyAnimationManager.Animator.SetFloat("MyTimeScale", 0);
+        _agent.isStopped = true;
+    }
+    public void OnTimeResumed()
+    {
+        _enemyAnimationManager.Animator.SetFloat("MyTimeScale", 0);
+        _agent.isStopped = false;
+    }
     //void Update()
     //{
     //    _currentEnemyState?.Update();

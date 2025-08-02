@@ -1,4 +1,5 @@
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelableUpgradeInt : LevelableUpgrade,ISerializationCallbackReceiver
@@ -13,7 +14,7 @@ public class LevelableUpgradeInt : LevelableUpgrade,ISerializationCallbackReceiv
         if (toPay >= PlayerStats.savedMoney) return;
         _upgradeCurrentLevel = _upgradelevelToBuy;
         _upgradeLevellUI.SetUpgradeBuyLevel(_upgradeCurrentLevel);
-        UpgradesManager.IncreaseUpgradeLevel(_upgrade.Id, _upgradeCurrentLevel);
+        PlayerStats.savedMoney -= toPay;
         OnUpgradeBought?.Invoke(_upgrade, _upgradeCurrentLevel);
         IncreaseLevelToBuy();
     }
@@ -78,6 +79,7 @@ public class LevelableUpgradeInt : LevelableUpgrade,ISerializationCallbackReceiv
         if (_upgradeCurrentLevel == _upgrade.MaxLevel) _upgradelevelToBuy = _upgradeCurrentLevel;
         toPay += _upgrade.CostPerLevel * _upgradelevelToBuy;
         _upgradeLevellUI.SetPreviewLevel(_upgradelevelToBuy);
+        _upgradeLevellUI.SetUpgradeBuyLevel(_upgradelevelToBuy-1);
         _upgradeLevellUI.SetPrice(toPay);
     }
 }

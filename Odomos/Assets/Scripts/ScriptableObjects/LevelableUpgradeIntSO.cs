@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Upgrades/ Levelable upgrade int")]
+[CreateAssetMenu(menuName ="Upgrades/Levelable upgrade int")]
 public class LevelableUpgradeIntSO : LevelableUpgradeSO
 {
     public int PerLevelIncrease { get => _perLevelIncrease; }

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-
+    [SerializeField] GameEventSO _stopTime;
     [SerializeField] PlayerController _player;
     [SerializeField] PlayerMovement _playerMovement;
     [SerializeField] InputActionAsset _controls;
@@ -73,6 +73,10 @@ public class PlayerInputHandler : MonoBehaviour
     {
         int amount = (int)value.Get<float>();
         _player.ChangeBuyAmount(amount);
+    }
+    private void OnStopTime(InputValue value)
+    {
+       _player.StopTime();
     }
     private void OnAttack(InputValue value)
     {

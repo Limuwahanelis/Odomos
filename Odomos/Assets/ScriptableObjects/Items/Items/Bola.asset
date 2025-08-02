@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97461d87194435d41b5ec42c4c488302, type: 3}
+  m_Name: Bola
+  m_EditorClassIdentifier: 
+  _itemCategory: {fileID: 11400000, guid: 1e659674f79e0974bb0df7e50e184fd1, type: 2}
+  _inStock: 6
+  _name: Bola
+  _price: 0.1

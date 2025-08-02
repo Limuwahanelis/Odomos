@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d1d4f5d7d9be82479fd033d0de8f208, type: 3}
+  m_Name: Shopping list level 2
+  m_EditorClassIdentifier: 
+  _toBuy:
+  - toBuy: {fileID: 11400000, guid: 1e659674f79e0974bb0df7e50e184fd1, type: 2}
+    amount: 3
+  - toBuy: {fileID: 11400000, guid: 997da9e8f11d4f646800ffda61c415d9, type: 2}
+    amount: 1
+  - toBuy: {fileID: 11400000, guid: 79d5745a524ea8a4daf327c45a8ab497, type: 2}
+    amount: 3
+  - toBuy: {fileID: 11400000, guid: 30cafe0ef0965534f875ae3d7c1ccb9d, type: 2}
+    amount: 1
+  - toBuy: {fileID: 11400000, guid: 0930cf024b0cedf4fa17151396796aa1, type: 2}
+    amount: 1
+  - toBuy: {fileID: 11400000, guid: 5b3ba005bcba09f429f1e8749a506bfe, type: 2}
+    amount: 1

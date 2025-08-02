@@ -8,20 +8,13 @@ using UnityEngine.Events;
 
 public abstract class EnemyController : MonoBehaviour
 {
-    public UnityEvent OnEnemyDied;
-    public Rigidbody2D EnemyRB => _rb;
     [Header("Debug"), SerializeField] bool _printState;
     public GameObject MainBody => _mainBody;
     [SerializeField] protected Material _burnMaterial;
     [Header("Enemy common"), SerializeField] protected AnimationManager _enemyAnimationManager;
-    [SerializeField] protected float _timeToBurn;
-    //[SerializeField] protected EnemyHealthSystem2 _healthSystem;
     [SerializeField] protected Transform _playerTransform;
     [SerializeField] protected Rigidbody2D _playerRB;
     [SerializeField] protected GameObject _mainBody;
-    [SerializeField] protected HealthSystem _healthSystem;
-    [SerializeField] protected Rigidbody2D _rb;
-    [SerializeField] protected SpriteRenderer _spriteRenderer;
     protected Dictionary<Type, EnemyState> _enemyStates = new Dictionary<Type, EnemyState>();
     protected EnemyState _currentEnemyState;
     public virtual void Awake()

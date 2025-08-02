@@ -8,11 +8,13 @@ public class UpgradesManager : MonoBehaviour
     {
         public string id;
         public bool isUnlocked;
+        public bool isUnlockedAtStart;
     }
     public class LevelableUpgradeData
     {
         public string id;
         public int level;
+        public int levelAtStart;
     }
     public class UpgradeData
     {
@@ -42,8 +44,8 @@ public class UpgradesManager : MonoBehaviour
             if (_nonLevelableUpgradeDatas == null)
             {
                 _nonLevelableUpgradeDatas = new List<NonLevelableUpgradeData>();
-                List<LevelableUpgradeSO> tmp = Resources.LoadAll<LevelableUpgradeSO>($"{ScriptPaths.ResourcesNonLevelableUpgradesPath}/").ToList();
-                foreach (LevelableUpgradeSO upgrade in tmp)
+                List<NonLevelableUpgradeSO> tmp = Resources.LoadAll<NonLevelableUpgradeSO>($"{ScriptPaths.ResourcesNonLevelableUpgradesPath}/").ToList();
+                foreach (NonLevelableUpgradeSO upgrade in tmp)
                 {
                     _nonLevelableUpgradeDatas.Add(new NonLevelableUpgradeData() { id = upgrade.Id, isUnlocked = false });
                 }
@@ -54,7 +56,38 @@ public class UpgradesManager : MonoBehaviour
     private static List<LevelableUpgradeData> _levelableUpgradeDatas;
     private static List<NonLevelableUpgradeData> _nonLevelableUpgradeDatas;
     public static List<UpgradeData> UpgradeDatas;
-
+    public static void SetLevelAtStart()
+    {
+        if (_levelableUpgradeDatas == null) return;
+        foreach(LevelableUpgradeData upgrade in _levelableUpgradeDatas)
+        {
+            upgrade.levelAtStart = upgrade.level;
+        }
+    }
+    public static void ResetLevelAtStart()
+    {
+        if (_levelableUpgradeDatas == null) return;
+        foreach (LevelableUpgradeData upgrade in _levelableUpgradeDatas)
+        {
+            upgrade.level = upgrade.levelAtStart;
+        }
+    }
+    public static void SetUnlockAtStart()
+    {
+        if (_nonLevelableUpgradeDatas == null) return;
+        foreach (NonLevelableUpgradeData upgrade in _nonLevelableUpgradeDatas)
+        {
+            upgrade.isUnlockedAtStart = upgrade.isUnlocked;
+        }
+    }
+    public static void ReSetUnlockAtStart()
+    {
+        if (_nonLevelableUpgradeDatas == null) return;
+        foreach (NonLevelableUpgradeData upgrade in _nonLevelableUpgradeDatas)
+        {
+            upgrade.isUnlocked = upgrade.isUnlockedAtStart;
+        }
+    }
     public static void IncreaseUpgradeLevel(string id,int level)
     {
         LevelableUpgradeDatas.Find(x => x.id == id).level = level;
@@ -62,6 +95,10 @@ public class UpgradesManager : MonoBehaviour
     public static int GetUpgradeLevel(string id)
     {
         return LevelableUpgradeDatas.Find(x => x.id == id).level;
+    }
+    public static bool GetUpgradeStatus(string id)
+    {
+        return NonLevelableUpgradeDatas.Find(x => x.id == id).isUnlocked;
     }
     public static void UnlockUpgrade(string id)
     {

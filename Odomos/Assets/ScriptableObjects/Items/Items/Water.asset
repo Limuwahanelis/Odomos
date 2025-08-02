@@ -15,4 +15,4 @@ MonoBehaviour:
   _itemCategory: {fileID: 11400000, guid: 1e659674f79e0974bb0df7e50e184fd1, type: 2}
   _inStock: 15
   _name: Water
-  _price: 0
+  _price: 0.05

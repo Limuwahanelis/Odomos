@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public GameObject MainBody => _mainBody;
     [Header("Upgrades")]
     [SerializeField] LevelableUpgradeFloatSO _speedUpgrade;
+    [SerializeField] NonLevelableUpgradeSO _stopTimeUpgrade;
+    [SerializeField] GameEventSO _stopTimeEventSO;
     [Header("Player"), SerializeField] Animator _anim;
     [SerializeField] GameObject _mainBody;
     [SerializeField] AnimationManager _playerAnimationManager;
@@ -66,7 +68,7 @@ public class PlayerController : MonoBehaviour
          _currentPlayerState = newState;
         Logger.Log(newState.GetType());
     }
-    private void SetUpgrades()
+    public void SetUpgrades()
     {
         _playerMovement.IncreaseSpeed(_speedUpgrade.PerLevelIncrease* UpgradesManager.GetUpgradeLevel(_speedUpgrade.Id));
     }
@@ -106,6 +108,13 @@ public class PlayerController : MonoBehaviour
     public void ChangeBuyAmount(int value)
     {
         _playerInteractions.ChangeBuyAmount(value);
+    }
+    public void StopTime()
+    {
+        if(UpgradesManager.GetUpgradeStatus( _stopTimeUpgrade.Id))
+        {
+            _stopTimeEventSO?.Raise();
+        }
     }
     public Coroutine WaitAndExecuteFunction(float timeToWait, Action function)
     {

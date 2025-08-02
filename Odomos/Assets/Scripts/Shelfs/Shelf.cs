@@ -2,7 +2,6 @@ using System.Collections;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Shelf : MonoBehaviour,IInteractable,IReturnable,IBuyAmountChangable
 {
@@ -16,6 +15,7 @@ public class Shelf : MonoBehaviour,IInteractable,IReturnable,IBuyAmountChangable
     [SerializeField] AnimationManager _animMan;
     [SerializeField] Canvas _canvas;
     [SerializeField] Item _item;
+    [SerializeField] int _modifedAmount = -1;
     [SerializeField] ItemDescription _description;
     [SerializeField] PlayerInventory _playerInventory;
     [SerializeField] Transform _npcPos;
@@ -23,11 +23,13 @@ public class Shelf : MonoBehaviour,IInteractable,IReturnable,IBuyAmountChangable
     private Coroutine _timerCor = null;
     private void Awake()
     {
-        _description.SetUp(_item);
-        _itemInfo = new ItemInfo() {inStock=_item.InStock };
+        _itemInfo = new ItemInfo() {inStock= (_modifedAmount>-1? _modifedAmount:_item.InStock) };
+        _description.SetUp(_item,_itemInfo.inStock);
     }
     void Start()
     {
+        if (_playerInventory == null) _playerInventory=FindFirstObjectByType<PlayerInventory>();
+        if (_item == null) Logger.Error("Item on shlef is missing!");
         
     }
 

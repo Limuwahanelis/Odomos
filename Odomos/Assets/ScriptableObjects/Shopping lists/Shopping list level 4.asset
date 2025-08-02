@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d1d4f5d7d9be82479fd033d0de8f208, type: 3}
+  m_Name: Shopping list level 4
+  m_EditorClassIdentifier: 
+  _toBuy:
+  - toBuy: {fileID: 11400000, guid: a323d022c3b0dc94697ee58640dff59b, type: 2}
+    amount: 10
+  - toBuy: {fileID: 11400000, guid: 72d74f2c017f404438bceebca0e235c1, type: 2}
+    amount: 4
+  - toBuy: {fileID: 11400000, guid: e96e297e5e9079e4c8da7dd3c7b07e19, type: 2}
+    amount: 1
+  - toBuy: {fileID: 11400000, guid: 00be2164bb48e604eab47c8a7771c4f7, type: 2}
+    amount: 5
+  - toBuy: {fileID: 11400000, guid: 7e2ccfe151daefa489e5c83561cd19ba, type: 2}
+    amount: 2
+  - toBuy: {fileID: 11400000, guid: 1e659674f79e0974bb0df7e50e184fd1, type: 2}
+    amount: 3
+  - toBuy: {fileID: 11400000, guid: 230d56b6eb3470646b966784a13a1699, type: 2}
+    amount: 1
+  - toBuy: {fileID: 11400000, guid: 249142b0e5b53ae4cb5be4d9c97adc4f, type: 2}
+    amount: 1
